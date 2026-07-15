@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+
+# Ansible
+*.retry
+
+# SSH Keys
+*.pem
+*.key
+id_rsa
+id_ed25519
+
+# Secrets
+.env
+vault.yml
+
+# VS Code
+.vscode/
+
+# IntelliJ
+.idea/
