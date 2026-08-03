@@ -1,5 +1,8 @@
 ---
 - name: Update application repository
+  become: true
+  become_user: kube
+  
   ansible.builtin.git:
     repo: "{{ app_repo }}"
     dest: "{{ app_directory }}"
