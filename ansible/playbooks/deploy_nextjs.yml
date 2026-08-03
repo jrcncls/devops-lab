@@ -1,0 +1,7 @@
+---
+- name: Deploy Next.js application
+  hosts: test
+  become: true
+
+  roles:
+    - nextjs_docker

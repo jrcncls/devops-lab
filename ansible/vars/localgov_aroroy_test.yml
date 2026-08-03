@@ -1,0 +1,22 @@
+---
+# Application
+app_name: localgov_aroroy
+
+# Git
+app_repo: git@bitbucket.org:aatech_team/local_government_website_new.git
+app_branch: aroroy-sprint_2_test_2
+
+# Deployment
+app_directory: /home/kube/apps/localgov_aroroy
+
+# Docker
+container_name: localgov_aroroy
+docker_image: tondosolutions/tondo_landing_page
+docker_network: tondo_network
+port_mapping: "3013:3000"
+
+# Container
+container_command: >-
+  sh -c "npm install && npm run build && npm start"
+
+docker_restart_policy: unless-stopped
