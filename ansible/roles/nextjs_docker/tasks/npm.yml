@@ -1,0 +1,4 @@
+---
+- name: Install Node.js dpendencies
+  community.general.npm:
+    path: "{{ app_directory }}"
