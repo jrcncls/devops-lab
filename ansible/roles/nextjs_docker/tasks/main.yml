@@ -2,14 +2,14 @@
 - name: Update repository
   ansible.builtin.import_tasks: git.yml
 
-- name: Install Node.js dependencies
+- name: Install Node.js dependenciesgit co
   ansible.builtin.import_tasks: npm.yml
 
 - name: Build application
   ansible.builtin.import_tasks: build.yml
 
 - name: Deploy Docker container
-ansible.builtin.import_tasks: docker.yml
+  ansible.builtin.import_tasks: docker.yml
 
 - name: Verify deployment
   ansible.builtin.import_tasks: verify.yml
