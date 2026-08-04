@@ -1,0 +1,10 @@
+---
+- name: Check running container
+  ansible.builtin.command:
+    cmd: docker ps
+
+  register: docker_ps
+
+- name: Display running containers
+  ansible.builtin.debug:
+    var: docker_ps.stdout_lines

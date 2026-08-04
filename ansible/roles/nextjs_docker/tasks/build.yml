@@ -1,6 +1,0 @@
----
-- name: Build the Next.js application
-  ansible.builtin.command: 
-    cmd: npm run build
-    chdir: "{{ app_directory }}"
-   

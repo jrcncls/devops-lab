@@ -1,18 +1,24 @@
 ---
-- name: Run application container
+- name: Pull latest Docker image
+  community.docker.docker_image:
+    name: "{{ docker_image }}"
+    source: pull
+
+- name: Deploy application container
   community.docker.docker_container:
     name: "{{ docker_container_name }}"
-    recreate: true
-
     image: "{{ docker_image }}"
-    ports: "{{ docker_ports }}"
+    recreate: true
     state: started
+
+    ports: "{{ docker_ports }}"
 
     volumes:
       - "{{ app_directory }}:/app"
-    
+
     networks:
       - name: "{{ docker_network }}"
-    
+
     restart_policy: "{{ docker_restart_policy }}"
+
     command: "{{ docker_container_command }}"
