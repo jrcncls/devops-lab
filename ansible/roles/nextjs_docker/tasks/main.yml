@@ -1,4 +1,7 @@
 ---
+- name: Update application repository
+  ansible.builtin.import_tasks: git.yml
+
 - name: Deploy Docker container
   ansible.builtin.import_tasks: docker.yml
 
