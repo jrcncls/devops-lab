@@ -1,7 +1,7 @@
 ---
 - name: Check running container
   ansible.builtin.command:
-    cmd: docker ps
+    cmd: docker ps --filter "name={{ docker_container_name }}" 
 
   register: docker_ps
 
