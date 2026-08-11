@@ -1,0 +1,13 @@
+app_name: localgov_aroroy
+image_name: tondosolutions/localgov_aroroy
+
+repository: git@bitbucket.org:aatech_team/local_government_website_new.git
+
+environments:
+  test:
+    branch: aroroy-sprint_3_test
+    deploy_job: Deploy - LocalGov Aroroy Test
+
+  demo:
+    branch: aroroy-sprint_3_demo
+    deploy_job: Deploy - LocalGov Aroroy Demo
