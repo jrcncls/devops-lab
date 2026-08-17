@@ -9,3 +9,6 @@ environments:
 
   demo:
     branch: aroroy-sprint_3_demo
+
+  uat:
+    branch: aroroy-sprint_3_demo

@@ -1,0 +1,10 @@
+---
+app_name: localgov_aroroy
+
+docker_container_name: localgov_aroroy_uat
+
+docker_network: tondo_network
+docker_ports: 
+  - "3301:3000"
+
+docker_restart_policy: unless-stopped
