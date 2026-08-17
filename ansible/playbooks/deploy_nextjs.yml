@@ -1,6 +1,5 @@
 ---
 - name: Deploy Next.js application
-  hosts: test
 
   roles:
     - nextjs_docker
