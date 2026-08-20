@@ -1,14 +1,8 @@
-app_name: localgov_aroroy
-image_name: tondosolutions/localgov_aroroy
+app_name: tondo_solutions_nextjs
+image_name: tondosolutions/tondo_solutions_nextjs
 deploy_job: Generic - Docker Deploy
-repository: git@bitbucket.org:aatech_team/local_government_website_new.git
+repository: git clone git@bitbucket.org:aatech_team/tondo_solutions_nextjs.git
 
 environments:
   test:
-    branch: aroroy-sprint_3_test
-
-  demo:
-    branch: aroroy-sprint_3_demo
-
-  uat:
-    branch: aroroy-sprint_3_demo
+    branch: main
