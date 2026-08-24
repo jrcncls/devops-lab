@@ -2,10 +2,10 @@
 app_name: localgov_aroroy
 
 docker_container_name: localgov_aroroy
-#docker_image_repo: tondosolutions/localgov_aroroy
-#docker_image_tag: latest
+
 docker_network: tondo_network
-docker_ports: 
+
+docker_ports:
   - "3013:3000"
 
 docker_restart_policy: unless-stopped

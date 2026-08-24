@@ -1,8 +1,8 @@
-app_name: tondo_solutions_nextjs
-image_name: tondosolutions/tondo_solutions_nextjs
+app_name: internal_ticketing_frontend
+image_name: tondosolutions/internal_ticketing_frontend
 deploy_job: Generic - Docker Deploy
-repository: git@bitbucket.org:aatech_team/tondo_solutions_nextjs.git
+repository: git@bitbucket.org:aatech_team/internal_ticketing_frontend.git
 
 environments:
   test:
-    branch: main
+    branch: sprint_3_test
