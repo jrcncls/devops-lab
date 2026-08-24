@@ -1,0 +1,11 @@
+---
+app_name: internal_ticketing_frontend
+
+docker_container_name: internal_ticketing_frontend
+
+docker_network: tondo_network
+
+docker_ports:
+  - "3012:3000"
+
+docker_restart_policy: unless-stopped
