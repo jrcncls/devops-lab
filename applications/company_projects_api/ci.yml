@@ -1,0 +1,10 @@
+app_name: company_projects_api
+app_type: django
+image_name: tondosolutions/company_projects_api
+
+repository: git@bitbucket.org:aatech_team/company_projects_api.git
+
+environments:
+  test:
+    branch: test
+    deploy_job: Generic - Docker Deploy

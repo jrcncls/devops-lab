@@ -1,0 +1,14 @@
+---
+app_name: internal_ticketing_api
+
+docker_container_name: internal_ticketing_api
+docker_network: tondo_network
+
+docker_ports:
+  - "8001:8000"
+
+docker_volumes:
+  - "/var/www/internal_ticketing_api/media:/app/media"
+  - "/var/www/internal_ticketing_api/static:/app/static"
+
+docker_restart_policy: unless-stopped
