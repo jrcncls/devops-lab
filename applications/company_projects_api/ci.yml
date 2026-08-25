@@ -8,3 +8,7 @@ environments:
   test:
     branch: test
     deploy_job: Generic - Docker Deploy
+
+    deployment:
+      migrate: true
+      fixtures: false
