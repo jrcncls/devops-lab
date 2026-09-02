@@ -16,7 +16,6 @@ COPY . .
 # Generate the static production build (creates a /dist or /build folder)
 RUN npm run build
 
-
 # --- Stage 2: Serve the static files using Nginx ---
 FROM nginx:alpine
 

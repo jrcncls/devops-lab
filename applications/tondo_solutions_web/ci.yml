@@ -1,0 +1,8 @@
+app_name: tondo_solutions_web
+image_name: tondosolutions/tondo_solutions_web
+deploy_job: Generic - Docker Deploy
+repository: git@bitbucket.org:aatech_team/tondo_solutions_web.git
+
+environments:
+  test:
+    branch: main

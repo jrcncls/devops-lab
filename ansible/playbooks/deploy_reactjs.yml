@@ -1,0 +1,6 @@
+---
+- name: Deploy React.js application
+  hosts: "{{ deployment_group }}"
+
+  roles:
+    - reactjs_docker

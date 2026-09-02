@@ -1,6 +1,0 @@
----
-- name: Deploy Next.js application
-  hosts: "{{ deployment_group }}"
-
-  roles:
-    - nextjs_docker
