@@ -5,6 +5,6 @@ docker_container_name: tondo_solutions_web_test
 
 docker_network: tondo_network
 docker_ports: 
-  - "3015:3000"
+  - "3015:80"
 
 docker_restart_policy: unless-stopped
