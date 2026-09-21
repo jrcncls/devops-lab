@@ -6,3 +6,6 @@ repository: git@bitbucket.org:aatech_team/internal_ticketing_frontend.git
 environments:
   test:
     branch: sprint_3_test
+
+  demo:
+    branch: sprint_3_demo
