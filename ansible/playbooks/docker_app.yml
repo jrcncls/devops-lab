@@ -1,0 +1,6 @@
+---
+- name: Deploy containerized application
+  hosts: "{{ deployment_group }}"
+
+  roles:
+    - docker_app
