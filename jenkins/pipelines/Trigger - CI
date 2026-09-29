@@ -1,0 +1,151 @@
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Read Webhook') {
+            steps {
+                script {
+
+                    if (!env.GIT_BRANCH?.trim()) {
+                        error "No branch was received from the webhook."
+                    }
+
+                    if (!env.REPOSITORY_FULL_NAME?.trim()) {
+                        error "No repository was received from the webhook."
+                    }
+
+                    echo "===== Webhook Information ====="
+                    echo "Repository: ${env.REPOSITORY_FULL_NAME}"
+                    echo "Branch:     ${env.GIT_BRANCH}"
+                }
+            }
+        }
+
+        stage('Load Project Configuration') {
+            steps {
+                script {
+
+                    def repository = "git@bitbucket.org:${env.REPOSITORY_FULL_NAME}.git"
+                    def applicationsDir = "/var/lib/jenkins/devops-lab/applications"
+
+                    echo "===== Looking for project configuration ====="
+                    echo "Repository: ${repository}"
+                    echo "Branch:     ${env.GIT_BRANCH}"
+
+                    def configFilePath = sh(
+                        script: """
+                            grep -RlF \
+                                "repository: ${repository}" \
+                                '${applicationsDir}' \
+                                --include='ci.yml' \
+                                | head -n 1
+                        """,
+                        returnStdout: true
+                    ).trim()
+
+                    if (!configFilePath) {
+                        echo "No CI configuration found for repository: ${repository}"
+                        echo "Skipping CI build."
+                        env.CI_ENABLED = 'false'
+                    } else {
+
+                        echo "Configuration: ${configFilePath}"
+
+                        def config = readYaml file: configFilePath
+
+                        if (!config?.environments) {
+                            error "No environments defined in ${configFilePath}"
+                        }
+
+                        def matchedEnvironment = null
+                        def matchedEnvironmentConfig = null
+
+                        config.environments.each { environmentName, environmentConfig ->
+
+                            if (environmentConfig.branch == env.GIT_BRANCH) {
+                                matchedEnvironment = environmentName
+                                matchedEnvironmentConfig = environmentConfig
+                            }
+                        }
+
+                        if (!matchedEnvironment) {
+
+                            echo "No CI environment is configured for:"
+                            echo "Repository: ${repository}"
+                            echo "Branch:     ${env.GIT_BRANCH}"
+                            echo "Skipping CI build."
+
+                            env.CI_ENABLED = 'false'
+
+                        } else {
+
+                            env.CI_ENABLED = 'true'
+
+                            env.GIT_REPO = repository
+                            env.APP_NAME = config.app_name
+                            env.IMAGE_NAME = config.image_name
+                            env.ENVIRONMENT = matchedEnvironment
+                            env.DEPLOY_JOB = config.deploy_job
+
+                            echo "===== Resolved Configuration ====="
+                            echo "Repository:  ${env.GIT_REPO}"
+                            echo "Branch:      ${env.GIT_BRANCH}"
+                            echo "Application: ${env.APP_NAME}"
+                            echo "Environment: ${env.ENVIRONMENT}"
+                            echo "Image:       ${env.IMAGE_NAME}"
+                            echo "Deploy Job:  ${env.DEPLOY_JOB}"
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Trigger Generic CI') {
+            when {
+                expression {
+                    env.CI_ENABLED == 'true'
+                }
+            }
+
+            steps {
+                script {
+
+                    echo "===== Triggering Generic CI ====="
+
+                    build(
+                        job: 'Generic - Docker Build',
+                        parameters: [
+                            string(
+                                name: 'GIT_REPO',
+                                value: env.GIT_REPO
+                            ),
+                            string(
+                                name: 'GIT_BRANCH',
+                                value: env.GIT_BRANCH
+                            ),
+                            string(
+                                name: 'APP_NAME',
+                                value: env.APP_NAME
+                            ),
+                            string(
+                                name: 'ENVIRONMENT',
+                                value: env.ENVIRONMENT
+                            ),
+                            string(
+                                name: 'IMAGE_NAME',
+                                value: env.IMAGE_NAME
+                            ),
+                            string(
+                                name: 'DEPLOY_JOB',
+                                value: env.DEPLOY_JOB
+                            )
+                        ],
+                        wait: true
+                    )
+                }
+            }
+        }
+    }
+}

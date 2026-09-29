@@ -1,0 +1,8 @@
+app_name: kabayan_emr_react_new
+image_name: tondosolutions/kabayan_emr_react_new
+deploy_job: Generic - Docker Deploy
+repository: git@bitbucket.org:aatech_team/kabayan_emr_react_new.git
+
+environments:
+  test:
+    branch: main

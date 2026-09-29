@@ -1,0 +1,11 @@
+---
+app_name: kabayan_emr_react_new
+
+docker_container_name: kabayan_emr_react_new
+
+docker_network: tondo_network
+
+docker_ports:
+  - "8047:80"
+
+docker_restart_policy: unless-stopped
