@@ -6,6 +6,6 @@ docker_container_name: bawat_pagkain_react
 docker_network: tondo_network
 
 docker_ports:
-  - "8033:80"
+  - "8048:80"
 
 docker_restart_policy: unless-stopped
