@@ -1,0 +1,8 @@
+app_name: bawat_pagkain_react
+image_name: tondosolutions/bawat_pagkain_react
+deploy_job: Generic - Docker Deploy
+repository: git@bitbucket.org:aatech_team/bawat_pagkain_react.git
+
+environments:
+  test:
+    branch: main
