@@ -5,7 +5,7 @@ repository: git@bitbucket.org:aatech_team/local_government_website_new.git
 
 environments:
   test:
-    branch: aroroy-sprint_3_test
+    branch: aroroy-sprint_4_test
 
   demo:
     branch: aroroy-demo_release
