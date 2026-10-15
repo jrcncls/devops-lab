@@ -8,7 +8,7 @@ environments:
     branch: aroroy-sprint_3_test
 
   demo:
-    branch: aroroy-sprint_3_demo
+    branch: aroroy-demo_release
 
   uat:
     branch: aroroy-sprint_3_uat
